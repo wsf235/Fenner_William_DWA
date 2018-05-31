@@ -34,6 +34,9 @@ function form_builder(attach, ...form_elements){
 
             form.innerHTML += "</select>";
         }
+        else{
+            form.innerHTML += "Incorrect format in form at line " + i + ".";
+        }
 
     }
 
