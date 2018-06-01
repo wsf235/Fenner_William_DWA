@@ -1,11 +1,12 @@
 /**
- * Created by MasterAnseen on 5/29/18.
+ * Created by MasterAnseen on 5/31/18.
  */
+
+
 const form_builder = (attach, ...form_elements) => {
 
     //Create a form element
     var form = document.createElement('form');
-    var form_string = `<form>`;
 
     //Loop through all form elements from an array
     for(var i=0; i<form_elements.length; i++){
@@ -14,39 +15,35 @@ const form_builder = (attach, ...form_elements) => {
         //input will create a text based input field
         //button will create a button based on the type specified, etc
         if(form_elements[i][0] == "input"){
-            form_string += `<${form_elements[i][0]} type="${form_elements[i][1]}" />`;
+            form.innerHTML += "<"+form_elements[i][0]+" type='"+form_elements[i][1]+"' />";
         }
         else if(form_elements[i][0] == "label"){
-            form_string += `<${form_elements[i][0]} for=${form_elements[i][1]}>${form_elements[i][2]}</${form_elements[i][0]}>`;
+            form.innerHTML += "<"+form_elements[i][0]+" for='"+form_elements[i][1]+"'>"+form_elements[i][2]+"</"+form_elements[i][0]+">";
         }
         else if(form_elements[i][0] == "textarea"){
-            form_string += `<${form_elements[i][0]} />`;
+            form.innerHTML += "<"+form_elements[i][0]+" />";
         }
         else if(form_elements[i][0] == "button"){
-            form_string += `<${form_elements[i][0]} type=${form_elements[i][1]}>${form_elements[i][2]}</${form_elements[i][0]}>`;
+            form.innerHTML += "<"+form_elements[i][0]+" type='"+form_elements[i][1]+"'>"+form_elements[i][2]+"</ "+form_elements[i][0]+">";
         }
         else if(form_elements[i][0] == "select"){
-            form_string += `<${form_elements[i][0]}>`;
+            form.innerHTML += "<select>";
 
             for(var j=1; j<form_elements[i].length; j++){
-                form_string += `<option value=${form_elements[i][j]}>${form_elements[i][j]}</option>`;
+                form.innerHTML += "<option value='"+form_elements[i][j]+"'>"+form_elements[i][j]+"</option>";
             }
 
-            form_string += `</${form_elements[i][0]}>`;
+            form.innerHTML += "</select>";
         }
         else{
-            form_string += `Incorrect format in form at line ${i}.`;
+            form.innerHTML += "Incorrect format in form at line " + i + ".";
         }
-
-        form_string += `</br>`;
 
     }
 
-    form_string += `</form>`;
-
     if(attach == ""){
         //If no particular element is specified to add this to...
-        document.body.innerHTML += form_string;
+        document.body.appendChild(form);
         //console.log(form.innerHTML);
     }
     else{
@@ -55,6 +52,5 @@ const form_builder = (attach, ...form_elements) => {
 
 };
 
-form_builder("",["label", "input_label", "Hello Label"],["input", "text"], ["select", "open", "close", "left", "right"]);
 
-
+module.exports = form_builder;
