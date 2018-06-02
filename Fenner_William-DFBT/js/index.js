@@ -4,11 +4,10 @@
 const form_builder = (attach, ...form_elements) => {
 
     //Create a form element
-    var form = document.createElement('form');
-    var form_string = `<form>`;
+    let form_string = `<form>`;
 
     //Loop through all form elements from an array
-    for(var i=0; i<form_elements.length; i++){
+    for(let i=0; i<form_elements.length; i++){
 
         //Create an element based on the array input.
         //input will create a text based input field
@@ -28,7 +27,7 @@ const form_builder = (attach, ...form_elements) => {
         else if(form_elements[i][0] == "select"){
             form_string += `<${form_elements[i][0]}>`;
 
-            for(var j=1; j<form_elements[i].length; j++){
+            for(let j=1; j<form_elements[i].length; j++){
                 form_string += `<option value=${form_elements[i][j]}>${form_elements[i][j]}</option>`;
             }
 
@@ -42,6 +41,7 @@ const form_builder = (attach, ...form_elements) => {
 
     }
 
+    //Close the form element
     form_string += `</form>`;
 
     if(attach == ""){
