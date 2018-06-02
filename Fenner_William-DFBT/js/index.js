@@ -47,10 +47,8 @@ const form_builder = (attach, ...form_elements) => {
     if(attach == ""){
         //If no particular element is specified to add this to...
         document.body.innerHTML += form_string;
-        //console.log(form.innerHTML);
     }
     else{
-        //document.getElementsByName(attach) += form;
     }
 
 };
